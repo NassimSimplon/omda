@@ -1,9 +1,10 @@
-import React, { lazy, useCallback, useMemo, useState, Suspense } from "react";
+import React, { lazy, useCallback, useState, Suspense } from "react";
 import "./Navbar.css";
 
 //Drop Down
-const DestinationDropDown = lazy(() => import('../DestinationDropDown/DestinationDropDown'));
-
+const DestinationDropDown = lazy(() =>
+  import("../DestinationDropDown/DestinationDropDown")
+);
 
 const Navbar = () => {
   //States
@@ -11,14 +12,16 @@ const Navbar = () => {
 
   //Destination
   const openDropDown = useCallback(() => {
-    setIsOpen((prev)=>!prev);
+    setIsOpen((prev) => !prev);
   }, []);
+
 
   return (
     <div className="navbar">
       <div className="top-bar">
- 
         {/*  */}
+ 
+
         <div className="nav-tabs">
           <h1 className="log test">Logements</h1>
           <h1 className="exp test">Expériences</h1>
@@ -66,45 +69,43 @@ const Navbar = () => {
           </div>
         </div>
         {/*  */}
-
       </div>
       <div className="search-bar">
         <div className="block" onClick={openDropDown}>
-        <h2>Destination</h2>
-        <span>Recherche une destination</span>
-      </div>
-      <div className="block">
-        <h2>Arrivée</h2>
-        <span>Quand ?</span>
-      </div>
-      <div className=" last-block">
+          <h2>Destination</h2>
+          <span>Recherche une destination</span>
+        </div>
         <div className="block">
           <h2>Arrivée</h2>
           <span>Quand ?</span>
         </div>
+        <div className=" last-block">
+          <div className="block">
+            <h2>Arrivée</h2>
+            <span>Quand ?</span>
+          </div>
 
-        <div className="icon-section">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            stroke="white"
-            strokeWidth="4"
-            aria-hidden="true"
-            display="block"
-            overflow="visible"
-            style={{ height: "16px", width: "16px" }}
-            viewBox="0 0 32 32"
-          >
-            <path d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9" />
-          </svg>
+          <div className="icon-section">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              stroke="white"
+              strokeWidth="4"
+              aria-hidden="true"
+              display="block"
+              overflow="visible"
+              style={{ height: "16px", width: "16px" }}
+              viewBox="0 0 32 32"
+            >
+              <path d="M13 24a11 11 0 1 0 0-22 11 11 0 0 0 0 22zm8-3 9 9" />
+            </svg>
+          </div>
         </div>
+        <Suspense fallback={<>...loading</>}>
+          {isOpen && <DestinationDropDown />}
+        </Suspense>
       </div>
-<Suspense fallback={<>...loading</>}>
-{isOpen && <DestinationDropDown />}
-</Suspense>
-  
     </div>
-    </div >
   );
 };
 
