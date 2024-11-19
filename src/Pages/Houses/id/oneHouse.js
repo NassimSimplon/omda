@@ -13,11 +13,9 @@ const OneHouse = () => {
               "https://api.mockfly.dev/mocks/5db56058-011b-4531-a0ce-90c32837abeb/nass/house/get" 
           );
           if (!res.ok) throw new Error("Failed to fetch data");
-
           // Log the response to see its structure
           const data = await res.json();
-          console.log("API Response:", data);
-
+          // console.log("API Response:", data);
           setHouses(data);
       } catch (error) {
           console.error("Error fetching data:", error);

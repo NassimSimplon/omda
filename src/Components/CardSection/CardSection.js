@@ -15,7 +15,7 @@ export const CardSection = () => {
 
             // Log the response to see its structure
             const data = await res.json();
-            console.log("API Response:", data);
+            // console.log("API Response:", data);
 
             setHouses(data);
         } catch (error) {
